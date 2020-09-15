@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Login from "./Login";
+import FriendsList from './FriendsList'
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div>
         <ul>
           <li>
             <Link to="/login">Login</Link>
@@ -15,7 +17,7 @@ function App() {
           </li>
         </ul>
         <Switch>
-          {/* <PrivateRoute exact path="/protected" component={GasPrices} /> */}
+          <PrivateRoute exact path="/protected" component={FriendsList} />
           <Route path="/login" component={Login} />
           <Route component={Login} />
         </Switch>
