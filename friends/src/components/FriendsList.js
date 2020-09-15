@@ -1,5 +1,25 @@
 import React from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import styled from 'styled-components';
+
+const StyledSection = styled.section`
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    .friend {
+        width: 30%;
+        padding: 4%;
+        margin: 2%;
+        background-color: lightblue;
+
+        div {
+            padding: 2%;
+        }
+    }
+`;
 
 class FriendsList extends React.Component {
     state = {
@@ -12,14 +32,15 @@ class FriendsList extends React.Component {
     
     getData = () => {
         axiosWithAuth()
-          .get("/api/friends")
-          .then((res) => {
-            console.log(res.data)
+          .get( "/api/friends" )
+          .then( response => {
             this.setState({
-                friends: res.data
+                friends: response.data
             })
           })
-          .catch((err) => console.log(err));
+          .catch( error => {
+              console.log( error )
+          });
     };
 
     render() {
@@ -40,18 +61,18 @@ class FriendsList extends React.Component {
                     </div>
                     <button type='submit'>add friend</button>
                 </form>
-                <section>
-                    <h2>Friends List</h2>
-                    {this.state.friends.map( friend => {
+                <h2>Friends List</h2>
+                <StyledSection>
+                    { this.state.friends.map( friend => {
                         return (
-                            <div>
-                                <div>name: {friend.name}</div>
-                                <div>email: {friend.email}</div>
-                                <div>age: {friend.age}</div>
+                            <div className='friend'>
+                                <div><strong>name:</strong> { friend.name }</div>
+                                <div><strong>email:</strong> { friend.email }</div>
+                                <div><strong>age:</strong> { friend.age }</div>
                             </div>
                         )
                     })}
-                </section>
+                </StyledSection>
             </>
         )
     };
