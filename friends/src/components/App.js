@@ -10,10 +10,10 @@ function App() {
       <div>
         <ul>
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Login Page</Link>
           </li>
           <li>
-            <Link to="/protected">Protected Page</Link>
+            <Link to="/protected">Friends</Link>
           </li>
         </ul>
         <Switch>

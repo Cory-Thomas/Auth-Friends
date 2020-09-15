@@ -1,7 +1,23 @@
 import React from "react";
-
+import styled from 'styled-components';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
+const StyledForm = styled.form`
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+
+    div {
+        padding: 1%;
+        margin: 1%;
+    }
+    
+    button {
+        padding: 2%;
+        margin: 2%;
+        width: 125px;
+    }
+`;
 class Login extends React.Component {
     state = {
         credentials: {
@@ -40,21 +56,29 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.login}>
-                    <input
-                        type="text"
-                        name="username"
-                        value={this.state.credentials.username}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={this.state.credentials.password}
-                        onChange={this.handleChange}
-                    />
+                <StyledForm onSubmit={this.login}>
+                    <div>
+                        <label htmlFor='username'><strong>Username: </strong></label>
+                        <input
+                            type="text"
+                            name="username"
+                            id='username'
+                            value={this.state.credentials.username}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='password'><strong>Password: </strong></label>
+                        <input
+                            type="password"
+                            name="password"
+                            id='password'
+                            value={this.state.credentials.password}
+                            onChange={this.handleChange}
+                        />
+                    </div>
                     <button>Log in</button>
-                </form>
+                </StyledForm>
                 <p style={{ color: "red" }}>{this.state.error}</p>
             </div>
         )

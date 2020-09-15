@@ -2,6 +2,25 @@ import React from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
+const StyledForm = styled.form`
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+
+    div {
+        margin: 2%;
+
+        input {
+            padding: .6%;
+        }
+    }
+
+    button {
+        padding: 1.5%;
+        width: 150px;
+    }
+`;
+
 const StyledSection = styled.section`
     width: 80%;
     margin: 0 auto;
@@ -12,13 +31,17 @@ const StyledSection = styled.section`
     .friend {
         width: 30%;
         padding: 4%;
-        margin: 2%;
+        margin: 1% auto;
         background-color: lightblue;
 
         div {
             padding: 2%;
         }
     }
+`;
+
+const StyledH2 = styled.h2`
+    text-align: center;
 `;
 
 const initialValue = {
@@ -44,7 +67,7 @@ class FriendsList extends React.Component {
           .then( response => {
             this.setState({
                 friends: response.data
-            })//
+            })
           })
           .catch( error => {
               console.log( error )
@@ -80,9 +103,9 @@ class FriendsList extends React.Component {
     render() {
         return (
             <>
-                <form onSubmit={ this.handleSubmit }>
+                <StyledForm onSubmit={ this.handleSubmit }>
                     <div>
-                        <label htmlFor='name'>Name: </label>
+                        <label htmlFor='name'><strong>Name: </strong></label>
                         <input 
                             id='name' 
                             name='name'
@@ -93,7 +116,7 @@ class FriendsList extends React.Component {
                         />
                     </div>
                     <div>
-                        <label htmlFor='email'>Email: </label>
+                        <label htmlFor='email'><strong>Email: </strong></label>
                         <input 
                             id='email' 
                             name='email'
@@ -104,7 +127,7 @@ class FriendsList extends React.Component {
                         />
                     </div>
                     <div>
-                        <label htmlFor='age'>Age: </label>
+                        <label htmlFor='age'><strong>Age: </strong></label>
                         <input 
                             id='age' 
                             name='age'
@@ -115,8 +138,8 @@ class FriendsList extends React.Component {
                         />
                     </div>
                     <button type='submit'>add friend</button>
-                </form>
-                <h2>Friends List</h2>
+                </StyledForm>
+                <StyledH2>Friends List</StyledH2>
                 <StyledSection>
                     { this.state.friends.map( friend => {
                         return (
